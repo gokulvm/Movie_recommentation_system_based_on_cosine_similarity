@@ -14,11 +14,14 @@ import streamlit as st
 from PIL import Image
 #cs=pickle.load(open('cosine.pkl', 'rb'))
 df = pd.read_csv("movies_final.csv")
+cv = CountVectorizer()
+cv = cv.fit_transform(df["importent_feature"])
+cs = cosine_similarity(cv)
 
 def top_10(movie_title):
-    cv = CountVectorizer()
-    cv = cv.fit_transform(df["importent_feature"])
-    cs = cosine_similarity(cv)
+    #cv = CountVectorizer()
+   # cv = cv.fit_transform(df["importent_feature"])
+   # cs = cosine_similarity(cv)
     title = process.extractOne(movie_title,df["movie_title"])
     if title[1] > 80:
         movie_id = title[2]
