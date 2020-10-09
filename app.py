@@ -45,9 +45,9 @@ def main():
     </div>
     """
     st.markdown(html_temp,unsafe_allow_html=True)
-    message = st.text_input("Enter the movie title")
-    result=top_10(message)
+    message = st.text_input("Enter the movie title"
     if st.button("Predict"):
+        result=top_10(message)
         if type(result) == str:
             st.success(result)
         else:
