@@ -14,11 +14,11 @@ import streamlit as st
 from PIL import Image
 #cs=pickle.load(open('cosine.pkl', 'rb'))
 df = pd.read_csv("movies_final.csv")
-cv = CountVectorizer()
-cv = cv.fit_transform(df["importent_feature"])
-cs = cosine_similarity(cv)
 
 def top_10(movie_title):
+    cv = CountVectorizer()
+    cv = cv.fit_transform(df["importent_feature"])
+    cs = cosine_similarity(cv)
     title = process.extractOne(movie_title,df["movie_title"])
     if title[1] > 80:
         movie_id = title[2]
@@ -31,7 +31,7 @@ def top_10(movie_title):
             ans.append(movie_title)
             
             
-        return tuple(ans)
+        return ans
     else:
         ans  = "Sorry! The movie you requested is not in our database. Please check the spelling or try with other movies!"
         return ans
@@ -54,7 +54,7 @@ def main():
                 st.text(f"{i}.{j}")
    
     if st.button("About"):
-        st.text("This app giving the recommentations based on by movie genres and cast&crew and title.") 
+        st.text("This app giving the recommentations based on the movie genres and cast&crew and title.") 
         st.text("Recommendations given by : Cosine similarity")
         link = '[Code](https://github.com/gokulvm/Movie_recommentation_system_based_on_cosine_similarity)'
         st.markdown(link, unsafe_allow_html=True)
