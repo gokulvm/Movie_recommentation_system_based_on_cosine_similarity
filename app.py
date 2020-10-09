@@ -38,14 +38,13 @@ def top_10(movie_title):
 
 def main():
     st.text("@author: Gokulraj.T")
-    st.text("Machine Learning App Built with Streamlit")
     html_temp = """
     <div style="background-color:tomato;padding:10px">
     <h2 style="color:white;text-align:center;">Movies Recommendation engine</h2>
     </div>
     """
     st.markdown(html_temp,unsafe_allow_html=True)
-    message = st.text_input("Enter the movie title"
+    message = st.text_input("Enter the movie title")
     if st.button("Predict"):
         result=top_10(message)
         if type(result) == str:
